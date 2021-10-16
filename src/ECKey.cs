@@ -354,17 +354,17 @@ public static unsafe bool Compare128(byte* b0, byte* b1, int length)
             if (message == null)
                 throw new ArgumentNullException("message");
 
-#if NETCOREAPP3_1 || NET5_0
-            if (EthECKey.SignRecoverable)
-            {
-                SecpECDSASignature.TryCreateFromDer(sig.ToDER(), out var signature);
-                var recoverable = new SecpRecoverableECDSASignature(signature, recId);
-                ECPubKey.TryRecover(Context.Instance, recoverable, message, out var pubKey);
-                return new ECKey(pubKey.ToBytes(compressed), false);
-            }
-            else
-            {
-#endif
+// #if NETCOREAPP3_1 || NET5_0
+//             if (EthECKey.SignRecoverable)
+//             {
+//                 SecpECDSASignature.TryCreateFromDer(sig.ToDER(), out var signature);
+//                 var recoverable = new SecpRecoverableECDSASignature(signature, recId);
+//                 ECPubKey.TryRecover(Context.Instance, recoverable, message, out var pubKey);
+//                 return new ECKey(pubKey.ToBytes(compressed), false);
+//             }
+//             else
+//             {
+// #endif
                 var curve = Secp256k1;
 
                 // 1.0 For j from 0 to h   (h == recId here and the loop is outside this function)
@@ -421,9 +421,9 @@ public static unsafe bool Compare128(byte* b0, byte* b1, int length)
                     return new ECKey(q.GetEncoded(true), false);
                 }
                 return new ECKey(q.GetEncoded(), false);
-#if NETCOREAPP3_1 || NET5_0
-            }
-#endif
+// #if NETCOREAPP3_1 || NET5_0
+//             }
+// #endif
             }
 
 

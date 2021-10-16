@@ -267,42 +267,42 @@ namespace Nethereum.Signer
 
         public EthECDSASignature SignAndCalculateV(byte[] hash, BigInteger chainId)
         {
-#if NETCOREAPP3_1 || NET5_0
-            var privKey = NBitcoin.Secp256k1.Context.Instance.CreateECPrivKey(GetPrivateKeyAsBytes());
-            NBitcoin.Secp256k1.SecpRecoverableECDSASignature recSignature;
-            privKey.TrySignRecoverable(hash, out recSignature);
-            NBitcoin.Secp256k1.Scalar r;
-            NBitcoin.Secp256k1.Scalar s;
-            int recId;
-            recSignature.Deconstruct(out r, out s, out recId);
-            var vChain = CalculateV(chainId, recId);
-            return EthECDSASignatureFactory.FromComponents(r.ToBytes(), s.ToBytes(), vChain.ToBytesForRLPEncoding());
-#else
+// #if NETCOREAPP3_1 || NET5_0
+//             var privKey = NBitcoin.Secp256k1.Context.Instance.CreateECPrivKey(GetPrivateKeyAsBytes());
+//             NBitcoin.Secp256k1.SecpRecoverableECDSASignature recSignature;
+//             privKey.TrySignRecoverable(hash, out recSignature);
+//             NBitcoin.Secp256k1.Scalar r;
+//             NBitcoin.Secp256k1.Scalar s;
+//             int recId;
+//             recSignature.Deconstruct(out r, out s, out recId);
+//             var vChain = CalculateV(chainId, recId);
+//             return EthECDSASignatureFactory.FromComponents(r.ToBytes(), s.ToBytes(), vChain.ToBytesForRLPEncoding());
+// #else
             var signature = _ecKey.Sign(hash);
             var recId = CalculateRecId(signature, hash);
             var vChain = CalculateV(chainId, recId);
             signature.V = vChain.ToBytesForRLPEncoding();
             return new EthECDSASignature(signature);
-#endif
+// #endif
         }
 
         public EthECDSASignature SignAndCalculateYParityV(byte[] hash)
         {
-#if NETCOREAPP3_1 || NET5_0
-            var privKey = NBitcoin.Secp256k1.Context.Instance.CreateECPrivKey(GetPrivateKeyAsBytes());
-            NBitcoin.Secp256k1.SecpRecoverableECDSASignature recSignature;
-            privKey.TrySignRecoverable(hash, out recSignature);
-            NBitcoin.Secp256k1.Scalar r;
-            NBitcoin.Secp256k1.Scalar s;
-            int recId;
-            recSignature.Deconstruct(out r, out s, out recId);
-            return EthECDSASignatureFactory.FromComponents(r.ToBytes(), s.ToBytes(), new[] { (byte)(recId) });
-#else
+// #if NETCOREAPP3_1 || NET5_0
+//             var privKey = NBitcoin.Secp256k1.Context.Instance.CreateECPrivKey(GetPrivateKeyAsBytes());
+//             NBitcoin.Secp256k1.SecpRecoverableECDSASignature recSignature;
+//             privKey.TrySignRecoverable(hash, out recSignature);
+//             NBitcoin.Secp256k1.Scalar r;
+//             NBitcoin.Secp256k1.Scalar s;
+//             int recId;
+//             recSignature.Deconstruct(out r, out s, out recId);
+//             return EthECDSASignatureFactory.FromComponents(r.ToBytes(), s.ToBytes(), new[] { (byte)(recId) });
+// #else
             var signature = _ecKey.Sign(hash);
             var recId = CalculateRecId(signature, hash);
             signature.V = new[] {(byte) (recId)};
             return new EthECDSASignature(signature);
-#endif
+// #endif
         }
 
         internal static BigInteger CalculateV(BigInteger chainId, int recId)
@@ -313,21 +313,21 @@ namespace Nethereum.Signer
 
         public EthECDSASignature SignAndCalculateV(byte[] hash)
         {
-#if NETCOREAPP3_1 || NET5_0
-            var privKey = NBitcoin.Secp256k1.Context.Instance.CreateECPrivKey(GetPrivateKeyAsBytes());
-            NBitcoin.Secp256k1.SecpRecoverableECDSASignature recSignature;
-            privKey.TrySignRecoverable(hash, out recSignature);
-            NBitcoin.Secp256k1.Scalar r;
-            NBitcoin.Secp256k1.Scalar s;
-            int recId;
-            recSignature.Deconstruct(out r, out s, out recId);
-            return EthECDSASignatureFactory.FromComponents(r.ToBytes(), s.ToBytes(), new[] { (byte)(recId + 27) });
-#else
+// #if NETCOREAPP3_1 || NET5_0
+//             var privKey = NBitcoin.Secp256k1.Context.Instance.CreateECPrivKey(GetPrivateKeyAsBytes());
+//             NBitcoin.Secp256k1.SecpRecoverableECDSASignature recSignature;
+//             privKey.TrySignRecoverable(hash, out recSignature);
+//             NBitcoin.Secp256k1.Scalar r;
+//             NBitcoin.Secp256k1.Scalar s;
+//             int recId;
+//             recSignature.Deconstruct(out r, out s, out recId);
+//             return EthECDSASignatureFactory.FromComponents(r.ToBytes(), s.ToBytes(), new[] { (byte)(recId + 27) });
+// #else
             var signature = _ecKey.Sign(hash);
             var recId = CalculateRecId(signature, hash);
             signature.V = new[] {(byte) (recId + 27)};
             return new EthECDSASignature(signature);
-#endif
+// #endif
         }
 
         public EthECDSASignature Sign(byte[] hash)
