@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>sig_neth</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BouncyCastle">
+      <HintPath>src/BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="NBitcoin">
+      <HintPath>src/NBitcoin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+</Project>

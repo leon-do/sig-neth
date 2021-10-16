@@ -1,0 +1,5 @@
+/Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.csproj.AssemblyReference.cache
+/Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.AssemblyInfoInputs.cache
+/Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.AssemblyInfo.cs
+/Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.csproj.CoreCompileInputs.cache
