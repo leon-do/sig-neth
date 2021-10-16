@@ -11,7 +11,6 @@
 /Users/leondo/Desktop/sig-neth/bin/Debug/net5.0/sig-neth.pdb
 /Users/leondo/Desktop/sig-neth/bin/Debug/net5.0/BouncyCastle.Crypto.dll
 /Users/leondo/Desktop/sig-neth/bin/Debug/net5.0/NBitcoin.dll
-/Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.csproj.CopyComplete
 /Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.dll
 /Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/ref/sig-neth.dll
 /Users/leondo/Desktop/sig-neth/obj/Debug/net5.0/sig-neth.pdb
